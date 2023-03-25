@@ -29,25 +29,31 @@ let     collection      = document.getElementById("item_collection");
 let     body_           = document.querySelector("body");
 
 body_.className = "bg-dark";
-// Creazione e posizionamento "fixed" di titolo e sottotitolo
-document.querySelector("header").innerHTML = "<h1>FizzBuzzDOM</h1> <h2>IT WAS REALLY AMAZING</h2>";
-document.querySelector("h1").className = "text-white-50 text-center";
-document.querySelector("h1").classList.add("fixed-top");
+// Posizionamento "fixed" di header e footer, con relativi headings
+document.querySelector("header").classList.add("fixed-top", "bg-info");
+document.querySelector("header").setAttribute("style", "height: 8vh");
+document.querySelector("header").innerHTML = "<h1>FizzBuzzDOM</h1>";
+document.querySelector("h1").className = "text-black-50 text-center";
+document.querySelector("footer").classList.add("fixed-bottom");
+document.querySelector("footer").innerHTML = "<h2>IT WAS REALLY AMAZING</h2>";
 document.querySelector("h2").className = "text-white-50 text-center";
-document.querySelector("h2").classList.add("fixed-bottom");
 
 // Aggiungo classi Bootstrap alla lista con diversi metodi per testarli tutti
 collection.className = "reset_list_style";
 collection.className += " d-flex flex-wrap ";
 collection.setAttribute("class",collection.getAttribute("class") + "justify-content-center align-items-start");
-collection.classList.add("text-white-50", "p-0", "pt-5", "m-0"); 
-collection.setAttribute("style","gap:10px;");
+collection.classList.add("text-black-50", "fs-5", "fw-bold", "p-0", "pt-5", "mt-4"); 
+collection.setAttribute("style","gap: 10px;");
 console.log(collection);
 console.log(n_str, n);
 console.log(col_number_str, col_number);
 
 // Variabile stringa che assumerà i valori durante l'esecuzione del ciclo for e li trasferirà ai singoli "li"
 let     item        = "";
+// Contatori delle occorrenze:
+let     f_counter   = 0;
+let     b_counter   = 0;
+let     fb_counter  = 0;
 
 for (let i=1; i<=n; i++)
 {
@@ -63,12 +69,14 @@ for (let i=1; i<=n; i++)
         // Numero divisibile per 3
         item = "Fizz";
         bg_style = "bg-success";
+        f_counter++;
     }
     if ((i % 5) == 0)
     {
         // Numero divisibile (anche o solo) per 5
         item += "Buzz";
         bg_style = "bg-danger";
+        b_counter++;
     }
     if (item == "")
     {
@@ -79,6 +87,7 @@ for (let i=1; i<=n; i++)
     {
         // Item = "FizzBuzz" significa che il numero è divisibile per 15
         bg_style = "bg-warning";
+        fb_counter++;
     }
 
     // Assegnazione del dato e delle classi Bootstrap / stili all'"li" di turno
@@ -93,5 +102,9 @@ for (let i=1; i<=n; i++)
 }
 // Ciclo finito
 
-console.log(collection);
+// Variabile fizzbuzz_data con contatori delle occorrenze, "agganciata" allo header
+let     fizzbuzz_data   = document.createElement("h5");
+fizzbuzz_data.innerText = `Fizz totali: ${f_counter - fb_counter} --- Buzz totali: ${b_counter - fb_counter} --- FizzBuzz totali: ${fb_counter}`;
+fizzbuzz_data.classList.add("position-absolute", "bottom-0", "end-0", "me-5", "mb-3");
+document.querySelector("header").append(fizzbuzz_data);
 
