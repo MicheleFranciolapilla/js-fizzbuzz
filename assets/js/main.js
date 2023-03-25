@@ -19,12 +19,21 @@ const   n               = parseInt(n_str);
 const   col_number      = parseInt(col_number_str);
 const   flex_gap        = 15; 
 let     collection      = document.getElementById("item_collection");
+let     body_           = document.querySelector("body");
+
+body_.className = "bg-dark";
+document.querySelector("header").innerHTML = "<h1>FizzBuzzDOM</h1> <h2>IT WAS REALLY AMAZING</h2>";
+document.querySelector("h1").className = "text-white-50 text-center";
+document.querySelector("h1").classList.add("fixed-top");
+document.querySelector("h2").className = "text-white-50 text-center";
+document.querySelector("h2").classList.add("fixed-bottom");
+
 
 // Aggiungo classi Bootstrap alla lista con diversi metodi per testarli tutti
 collection.className = "reset_list_style";
 collection.className += " d-flex flex-wrap ";
 collection.setAttribute("class",collection.getAttribute("class") + "justify-content-center align-items-start");
-collection.classList.add("text-white-50", "bg-dark", "p-0", "m-0"); 
+collection.classList.add("text-white-50", "p-0", "pt-5", "m-0"); 
 collection.setAttribute("style","gap:10px;");
 console.log(collection);
 console.log(n_str, n);
@@ -35,25 +44,31 @@ let     item        = "";
 for (let i=1; i<=n; i++)
 {
     let list_item   = document.createElement("li");
-    let bg_col      = "bg-primary";  
+    let bg_style    = "bg-primary";  
     item = "";
 
     if ((i % 3) == 0)
     {
         item = "Fizz";
+        bg_style = "bg-success";
     }
     if ((i % 5) == 0)
     {
         item += "Buzz";
+        bg_style = "bg-danger";
     }
     if (item == "")
     {
         item = i;
     }
+    else if (item == "FizzBuzz")
+    {
+        bg_style = "bg-warning";
+    }
     console.log(i, " ", item);
     list_item.innerText = item;
     list_item.className = "d-flex";
-    list_item.classList.add("justify-content-center", "align-items-center", bg_col);
+    list_item.classList.add("justify-content-center", "align-items-center", bg_style);
     list_item.setAttribute("style",`flex-basis: calc((100% - ((${col_number}+1)*${flex_gap}px)) / ${col_number});`);
     list_item.setAttribute("style", list_item.getAttribute("style") + "aspect-ratio: 1;");
     collection.append(list_item);
