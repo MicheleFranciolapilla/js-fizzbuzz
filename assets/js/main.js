@@ -15,15 +15,17 @@
 
 const   n_str           = prompt("Inserisci il numero di elementi desierati","100");
 const   col_number_str  = prompt("Inserisci il numero di colonne desiderate","7");
-let     n               = parseInt(n_str);
-let     col_number      = parseInt(col_number_str);
+const   n               = parseInt(n_str);
+const   col_number      = parseInt(col_number_str);
+const   flex_gap        = 15; 
 let     collection      = document.getElementById("item_collection");
 
 // Aggiungo classi Bootstrap alla lista con diversi metodi per testarli tutti
-collection.className = "row";
-collection.className += " flex-wrap ";
+collection.className = "reset_list_style";
+collection.className += " d-flex flex-wrap ";
 collection.setAttribute("class",collection.getAttribute("class") + "justify-content-center align-items-start");
-collection.classList.add("bg-dark", "text-white-50"); 
+collection.classList.add("text-white-50", "bg-dark", "p-0", "m-0"); 
+collection.setAttribute("style","gap:10px;");
 console.log(collection);
 console.log(n_str, n);
 console.log(col_number_str, col_number);
@@ -32,8 +34,10 @@ let     item        = "";
 
 for (let i=1; i<=n; i++)
 {
-    let list_item = document.createElement("li");
+    let list_item   = document.createElement("li");
+    let bg_col      = "bg-primary";  
     item = "";
+
     if ((i % 3) == 0)
     {
         item = "Fizz";
@@ -48,8 +52,12 @@ for (let i=1; i<=n; i++)
     }
     console.log(i, " ", item);
     list_item.innerText = item;
-    collection.append(item);
+    list_item.className = "d-flex";
+    list_item.classList.add("justify-content-center", "align-items-center", bg_col);
+    list_item.setAttribute("style",`flex-basis: calc((100% - ((${col_number}+1)*${flex_gap}px)) / ${col_number});`);
+    list_item.setAttribute("style", list_item.getAttribute("style") + "aspect-ratio: 1;");
+    collection.append(list_item);
 }
 
-console.log(collection.nodeName);
+console.log(collection);
 
