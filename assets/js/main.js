@@ -14,6 +14,32 @@
 // 2) Nel ciclo for avverranno le operazioni di creazione dei sotto-elementi (li!!!), la scrittura al loro interno del dato e l'aggiunta mediante append.
 
 
-let     collection = document.getElementById("item_collection");
-
+let     collection  = document.getElementById("item_collection");
 console.log(collection);
+
+const   n           = 100;
+let     item        = "";
+
+for (let i=1; i<=n; i++)
+{
+    let coll_item = document.createElement("li");
+    item = "";
+    if ((i % 3) == 0)
+    {
+        item = "Fizz";
+    }
+    if ((i % 5) == 0)
+    {
+        item += "Buzz";
+    }
+    if (item == "")
+    {
+        item = i;
+    }
+    console.log(i, " ", item);
+    coll_item.innerText = item;
+    collection.append(item);
+}
+
+console.log(collection.nodeName);
+
