@@ -13,8 +13,13 @@
 // 1) Si crea un elemento vuoto (lista???) in index e in main.js lo si "punta" associandovi una variabile, mediante queryselector o simili.
 // 2) Nel ciclo for avverranno le operazioni di creazione dei sotto-elementi (li!!!), la scrittura al loro interno del dato e l'aggiunta mediante append.
 
-
 let     collection  = document.getElementById("item_collection");
+
+// Aggiungo classi Bootstrap alla lista con diversi metodi per testarli tutti
+collection.className = "row";
+collection.className += " flex-wrap";
+collection.classList.add("bg-dark"); 
+collection.setAttribute("class",collection.getAttribute("class") + " justify-content-center align-items-start");
 console.log(collection);
 
 const   n           = 100;
@@ -22,7 +27,7 @@ let     item        = "";
 
 for (let i=1; i<=n; i++)
 {
-    let coll_item = document.createElement("li");
+    let list_item = document.createElement("li");
     item = "";
     if ((i % 3) == 0)
     {
@@ -37,7 +42,7 @@ for (let i=1; i<=n; i++)
         item = i;
     }
     console.log(i, " ", item);
-    coll_item.innerText = item;
+    list_item.innerText = item;
     collection.append(item);
 }
 
