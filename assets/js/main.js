@@ -13,16 +13,21 @@
 // 1) Si crea un elemento vuoto (lista???) in index e in main.js lo si "punta" associandovi una variabile, mediante queryselector o simili.
 // 2) Nel ciclo for avverranno le operazioni di creazione dei sotto-elementi (li!!!), la scrittura al loro interno del dato e l'aggiunta mediante append.
 
-let     collection  = document.getElementById("item_collection");
+const   n_str           = prompt("Inserisci il numero di elementi desierati","100");
+const   col_number_str  = prompt("Inserisci il numero di colonne desiderate","7");
+let     n               = parseInt(n_str);
+let     col_number      = parseInt(col_number_str);
+let     collection      = document.getElementById("item_collection");
 
 // Aggiungo classi Bootstrap alla lista con diversi metodi per testarli tutti
 collection.className = "row";
-collection.className += " flex-wrap";
-collection.classList.add("bg-dark"); 
-collection.setAttribute("class",collection.getAttribute("class") + " justify-content-center align-items-start");
+collection.className += " flex-wrap ";
+collection.setAttribute("class",collection.getAttribute("class") + "justify-content-center align-items-start");
+collection.classList.add("bg-dark", "text-white-50"); 
 console.log(collection);
+console.log(n_str, n);
+console.log(col_number_str, col_number);
 
-const   n           = 100;
 let     item        = "";
 
 for (let i=1; i<=n; i++)
